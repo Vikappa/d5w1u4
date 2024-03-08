@@ -174,6 +174,7 @@ public class PlayerEngine {
             this.fileStorage[i] = this.fileStorage[i-1];
         }
         fileStorage[0] = target;
+        System.out.println();
         System.out.println("File added to storage");
     }
 
@@ -196,6 +197,7 @@ public class PlayerEngine {
     private void createMedia(Scanner scanner) {
         int action = 0; //
         while (action < 1 || action > 3) {
+            System.out.println();
             System.out.println("Adding new media, please choose file type");
             System.out.println("1: Picture");
             System.out.println("2: Track");
@@ -234,6 +236,7 @@ public class PlayerEngine {
                             }
                         }
                         Audio newtrack = new Audio(trackTitle, duration);
+                        System.out.println();
                         addMediaToStorage(newtrack);
                         start();
                         break;
@@ -300,8 +303,6 @@ public class PlayerEngine {
                 lettore.next();
             }
         }
-
-
     }
 
     public void start() {
@@ -309,6 +310,7 @@ public class PlayerEngine {
         System.out.println();
 
         while (true) {
+            System.out.println();
             System.out.println("Chose an option:");
             System.out.println("1: Add a new media");
             System.out.println("2: Browse");
