@@ -26,7 +26,7 @@ public class PlayerEngine {
             System.out.println("1: Picture");
             System.out.println("2: Track");
             System.out.println("3: Movie");
-            System.out.print("Please type a number between 0 to 2 then press ENTER: ");
+            System.out.print("Please type a number between 1 to 3 then press ENTER: ");
 
             if (scanner.hasNextInt()) {
                 action = scanner.nextInt();
@@ -102,6 +102,29 @@ public class PlayerEngine {
                 System.out.println((i+1) + "-" + fileStorage[i].getTitle());
             }
         }
+
+
+        int chosenFileIndex = -1;
+        while (chosenFileIndex < 0 || chosenFileIndex > 5){
+            System.out.println("Please chose a file to play or type 0 to exit");
+            if(lettore.hasNextInt()){
+                chosenFileIndex = lettore.nextInt();
+                lettore.nextLine(); // This consumes the newline character after the number
+                if(chosenFileIndex < 0 || chosenFileIndex > 5){
+                    System.out.println("Please select a valid file number between 1 to 5 or type 0 to exit.");
+                } else if (chosenFileIndex == 0) {
+                    start();
+                    break;
+                } else {
+                    this.fileStorage[chosenFileIndex-1].run();
+                }
+            }else{
+                System.out.println("Invalid input. Please enter a number.");
+                lettore.next();
+            }
+        }
+
+
     }
 
     public void start() {
