@@ -3,6 +3,7 @@ package Classes;
 
 public class Audio implements AudioContent{
 
+    int volume = 5;
 
     @Override
     public void play() {
@@ -11,16 +12,16 @@ public class Audio implements AudioContent{
 
     @Override
     public void run() {
+        this.play();
+    }
+
+    @Override
+    public void increaseVolume(int amount) {
 
     }
 
     @Override
-    public void increaseVolume() {
-
-    }
-
-    @Override
-    public void decreaseVolume() {
+    public void decreaseVolume(int amount) {
 
     }
 }

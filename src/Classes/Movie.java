@@ -1,23 +1,27 @@
 package Classes;
 
 public class Movie implements VideoContent, AudioContent{
+
+    int brightNess = 5;
+    int volume = 5;
+
     @Override
     public void play() {
 
     }
 
     @Override
-    public void increaseVolume() {
-
-    }
-
-    @Override
-    public void decreaseVolume() {
-
-    }
-
-    @Override
     public void run() {
+        this.play();
+    }
+
+    @Override
+    public void increaseVolume(int amount) {
+
+    }
+
+    @Override
+    public void decreaseVolume(int amount) {
 
     }
 
@@ -27,12 +31,12 @@ public class Movie implements VideoContent, AudioContent{
     }
 
     @Override
-    public void increaseBrightness() {
+    public void increaseBrightness(int amount) {
 
     }
 
     @Override
-    public void decreaseBrightness() {
+    public void decreaseBrightness(int amount) {
 
     }
 }

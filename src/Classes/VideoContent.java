@@ -2,10 +2,10 @@ package Classes;
 
 public interface VideoContent extends Media {
 
+
     void show();
 
+    public void increaseBrightness(int amount);
 
-    public void increaseBrightness();
-
-    public void decreaseBrightness();
+    public void decreaseBrightness(int amount);
 }
