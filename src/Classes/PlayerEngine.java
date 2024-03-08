@@ -11,13 +11,21 @@ public class PlayerEngine {
         this.fileStorage = files;
     }
 
+    private void addMediaToStorage(Media target){
+        for (int i = this.fileStorage.length-1; i > 0 ; i--) {
+            this.fileStorage[i] = this.fileStorage[i-1];
+        }
+        fileStorage[0] = target;
+        System.out.println("File added to storage");
+    }
+
     private void createMedia(Scanner scanner) {
-        int action = -1; //
-        while (action < 0 || action > 2) {
+        int action = 0; //
+        while (action < 1 || action > 3) {
             System.out.println("Adding new media, please choose file type");
             System.out.println("1: Picture");
             System.out.println("2: Track");
-            System.out.println("0: Movie");
+            System.out.println("3: Movie");
             System.out.print("Please type a number between 0 to 2 then press ENTER: ");
 
             if (scanner.hasNextInt()) {
@@ -28,7 +36,8 @@ public class PlayerEngine {
                         System.out.println("Please insert picture description.");
                         String picTitle = scanner.nextLine();
                         Picture newPic = new Picture(picTitle);
-                        newPic.run();
+                        addMediaToStorage(newPic);
+                        start();
                         break;
                     case 2:
                         System.out.println("Please insert track title.");
@@ -49,22 +58,48 @@ public class PlayerEngine {
                             }
                         }
                         Audio newtrack = new Audio(trackTitle, duration);
-                        newtrack.run();
+                        addMediaToStorage(newtrack);
+                        start();
                         break;
-                    case 0:
+                    case 3:
                         System.out.println("Please insert movie title.");
                         String movieTitle = scanner.nextLine();
-                        Picture newMobie = new Picture(movieTitle);
-                        newMobie.run();
+                        System.out.println("Please insert movie frames.");
+                        int frames = -1;
+                        while (frames < 0) {
+                            if (scanner.hasNextInt()) {
+                                frames = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (frames < 0) {
+                                    System.out.println("Please insert a positive number for the duration.");
+                                }
+                            } else {
+                                System.out.println("Invalid input. Please insert an integer for the duration.");
+                                scanner.next();
+                            }
+                        }
+                        Movie newMobie = new Movie(movieTitle, frames);
+                        addMediaToStorage(newMobie);
+                        start();
                         break;
                     default:
                         System.out.println("Invalid command. Please type a number between 0 to 2.");
-                        action = -1; // Ritorna nel loop
+                        action = 0; // Ritorna nel loop che si ripete finchè action è diverso da 1 2 3
                         break;
                 }
             } else {
                 System.out.println("Invalid command. Please type a number between 0 to 2.");
                 scanner.next(); // Consuma caratteri residui per pulire il prossimo scan
+            }
+        }
+    }
+
+    private void browseMedia(Scanner lettore){
+
+        for (int i = 0; i < fileStorage.length; i++) {
+            if(fileStorage[i] != null){
+                System.out.println((i+1) + "-" + fileStorage[i].getTitle());
             }
         }
     }
@@ -85,6 +120,7 @@ public class PlayerEngine {
                     createMedia(scanner);
                     break;
                 case 2:
+                    browseMedia(scanner);
                     break;
                 case 0:
                     System.out.println("Shutting down..");

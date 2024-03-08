@@ -1,8 +1,8 @@
 package Classes;
 
 public class Picture implements VideoContent {
-    private String title;
-    private int brightNess = 5;
+    private final String title;
+    private int brightNess;
 
     public Picture(String name){
         this.title = name;
@@ -12,6 +12,11 @@ public class Picture implements VideoContent {
     @Override
     public void run() {
         this.show();
+    }
+
+    @Override
+    public String getTitle() {
+        return this.title;
     }
 
     @Override

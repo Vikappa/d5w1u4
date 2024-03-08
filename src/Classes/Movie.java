@@ -2,8 +2,10 @@ package Classes;
 
 public class Movie implements VideoContent, AudioContent {
 
-    private int brightNess, volume, duration;
-    private String title;
+    private int brightNess;
+    private int volume;
+    private final int duration;
+    private final String title;
 
 
     public Movie(String title, int duration){
@@ -39,6 +41,11 @@ public class Movie implements VideoContent, AudioContent {
     @Override
     public void run() {
         this.play();
+    }
+
+    @Override
+    public String getTitle() {
+        return this.title;
     }
 
     public int getVolume() {

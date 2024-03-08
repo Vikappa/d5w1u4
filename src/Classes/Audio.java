@@ -3,8 +3,9 @@ package Classes;
 
 public class Audio implements AudioContent{
 
-    int volume, duration;
-    String title;
+    int volume;
+    final int duration;
+    final String title;
 
     public Audio(String tt, int duration){
         this.volume = 5;
@@ -23,7 +24,7 @@ public class Audio implements AudioContent{
             try {
                 Thread.sleep(100); // Attende un decimo di secondo
             } catch (InterruptedException e) {
-                // Catch obbligato
+                // Catch obbligato per usare sleep
                 Thread.currentThread().interrupt();
                 System.out.println("The execution was stopped");
             }
@@ -33,6 +34,11 @@ public class Audio implements AudioContent{
     @Override
     public void run() {
         this.play();
+    }
+
+    @Override
+    public String getTitle() {
+        return this.title;
     }
 
     @Override
