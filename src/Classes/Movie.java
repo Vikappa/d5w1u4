@@ -52,7 +52,7 @@ public class Movie implements VideoContent, AudioContent {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    private void setVolume(int volume) {
         this.volume = volume;
     }
 
@@ -105,7 +105,7 @@ public class Movie implements VideoContent, AudioContent {
         return brightNess;
     }
 
-    public void setBrightNess(int brightNess) {
+    private void setBrightNess(int brightNess) {
         this.brightNess = brightNess;
     }
 }

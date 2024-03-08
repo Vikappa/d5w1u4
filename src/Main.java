@@ -12,6 +12,6 @@ Scanner scanner = new Scanner(System.in);
     System.out.println("Application started");
     PlayerEngine player = new PlayerEngine();
     player.start();
-
+System.out.println();
     }
 }

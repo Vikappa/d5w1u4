@@ -11,55 +11,158 @@ public class PlayerEngine {
         this.fileStorage = files;
     }
 
-    private void audioFocus(Media target, Scanner lettore){
+    private void audioFocus(Media target, Scanner lettore) {
         Audio focussed = (Audio) target;
         System.out.println("Select an option:");
         System.out.println("1-Play");
         System.out.println("2-Increase Volume");
-        System.out.println("3-Decrease Volume:");
-        System.out.println("4-Back to main menu:");
+        System.out.println("3-Decrease Volume");
+        System.out.println("4-Back to main menu");
 
+        int chosenIndex = -1;
+        while (chosenIndex < 1 || chosenIndex > 4) {
+            System.out.println("Please choose an option or type 4 to go back to the main menu.");
+            if (lettore.hasNextInt()) {
+                chosenIndex = lettore.nextInt();
+                lettore.nextLine();
+                if (chosenIndex < 1 || chosenIndex > 4) {
+                    System.out.println("Please select number between 1 to 4.");
+                } else {
+                    switch (chosenIndex) {
+                        case 1:
+                            focussed.run();
+                            break;
+                        case 2:
+                            System.out.print("Enter the amount to increase volume: ");
+                            int volumeIncrease = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.increaseVolume(volumeIncrease);
+                            break;
+                        case 3:
+                            System.out.print("Enter the amount to decrease volume: ");
+                            int volumeDecrease = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.decreaseVolume(volumeDecrease);
+                            break;
+                        case 4:
+                            start();
+                            break;
+                    }
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                lettore.next();
+            }
+        }
     }
-    private void pictureFocus(Media target, Scanner lettore){
+
+    private void pictureFocus(Media target, Scanner lettore) {
+        if (!(target instanceof Picture)) {
+            System.out.println("The selected media is not a picture.");
+            return;
+        }
         Picture focussed = (Picture) target;
         System.out.println("Select an option:");
         System.out.println("1-Show");
         System.out.println("2-Increase Brightness");
-        System.out.println("3-Decrease Brightness:");
-        System.out.println("4-Back to main menu:");
+        System.out.println("3-Decrease Brightness");
+        System.out.println("4-Back to main menu");
+
+        int chosenIndex = -1;
+        while (chosenIndex < 1 || chosenIndex > 4) {
+            System.out.println("Please choose an option or type 4 to go back to the main menu.");
+            if (lettore.hasNextInt()) {
+                chosenIndex = lettore.nextInt();
+                lettore.nextLine();
+                if (chosenIndex < 1 || chosenIndex > 4) {
+                    System.out.println("Please select a valid option number between 1 to 4.");
+                } else {
+                    switch (chosenIndex) {
+                        case 1:
+                            focussed.run();
+                            break;
+                        case 2:
+                            System.out.print("Enter the amount to increase brightness: ");
+                            int increaseAmount = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.increaseBrightness(increaseAmount);
+                            break;
+                        case 3:
+                            System.out.print("Enter the amount to decrease brightness: ");
+                            int decreaseAmount = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.decreaseBrightness(decreaseAmount);
+                            break;
+                        case 4:
+                            start();
+                            break;
+                    }
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                lettore.next();
+            }
+        }
     }
-    private void movieFocus(Media target, Scanner lettore){
+
+    private void movieFocus(Media target, Scanner lettore) {
+        if (!(target instanceof Movie)) {
+            System.out.println("The selected media is not a movie.");
+            return;
+        }
         Movie focussed = (Movie) target;
         System.out.println("Select an option:");
         System.out.println("1-Play");
         System.out.println("2-Increase Brightness");
-        System.out.println("3-Decrease Brightness:");
+        System.out.println("3-Decrease Brightness");
         System.out.println("4-Increase Volume");
-        System.out.println("5-Decrease Volume:");
-        System.out.println("6-Back to main menu:");
+        System.out.println("5-Decrease Volume");
+        System.out.println("6-Back to main menu");
+        System.out.println();
 
         int chosenIndex = -1;
-        while (chosenIndex < 0 || chosenIndex > 5){
-            System.out.println("Please chose a file to play or type 0 to exit");
-            if(lettore.hasNextInt()){
+        while (chosenIndex < 1 || chosenIndex > 6) {
+            System.out.println("Please choose an option or type 6 to go back to the main menu.");
+            if (lettore.hasNextInt()) {
                 chosenIndex = lettore.nextInt();
-                lettore.nextLine(); // This consumes the newline character after the number
-                if(chosenIndex < 0 || chosenIndex > 5){
-                    System.out.println("Please select a valid file number between 1 to 5 or type 6 to exit.");
-                } else if (chosenIndex == 0) {
-                    start();
-                    break;
+                lettore.nextLine();
+                if (chosenIndex < 1 || chosenIndex > 6) {
+                    System.out.println("Please select a valid option number between 1 to 6.");
                 } else {
-                    switch (chosenIndex){
+                    switch (chosenIndex) {
                         case 1:
-                            target.run();
+                            focussed.run();
                             break;
-
-
-
+                        case 2:
+                            System.out.print("Enter the amount to increase brightness: ");
+                            int increaseAmount = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.increaseBrightness(increaseAmount);
+                            break;
+                        case 3:
+                            System.out.print("Enter the amount to decrease brightness: ");
+                            int decreaseAmount = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.decreaseBrightness(decreaseAmount);
+                            break;
+                        case 4:
+                            System.out.print("Enter the amount to increase volume: ");
+                            int volumeIncrease = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.increaseVolume(volumeIncrease);
+                            break;
+                        case 5:
+                            System.out.print("Enter the amount to decrease volume: ");
+                            int volumeDecrease = lettore.nextInt();
+                            lettore.nextLine();
+                            focussed.decreaseVolume(volumeDecrease);
+                            break;
+                        case 6:
+                            start();
+                            break;
                     }
                 }
-            }else{
+            } else {
                 System.out.println("Invalid input. Please enter a number.");
                 lettore.next();
             }
@@ -98,6 +201,8 @@ public class PlayerEngine {
             System.out.println("2: Track");
             System.out.println("3: Movie");
             System.out.print("Please type a number between 1 to 3 then press ENTER: ");
+            System.out.println();
+
 
             if (scanner.hasNextInt()) {
                 action = scanner.nextInt();
@@ -167,6 +272,7 @@ public class PlayerEngine {
     }
 
     private void browseMedia(Scanner lettore){
+        System.out.println();
 
         for (int i = 0; i < fileStorage.length; i++) {
             if(fileStorage[i] != null){
@@ -200,6 +306,7 @@ public class PlayerEngine {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println();
 
         while (true) {
             System.out.println("Chose an option:");

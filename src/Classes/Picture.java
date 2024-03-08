@@ -33,7 +33,7 @@ public class Picture implements VideoContent {
         return brightNess;
     }
 
-    public void setBrightNess(int brightNess) {
+    private void setBrightNess(int brightNess) {
         this.brightNess = brightNess;
     }
 

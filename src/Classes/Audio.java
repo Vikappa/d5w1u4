@@ -65,7 +65,7 @@ public class Audio implements AudioContent{
         return volume;
     }
 
-    public void setVolume(int volume) {
+    private void setVolume(int volume) {
         this.volume = volume;
     }
 }
