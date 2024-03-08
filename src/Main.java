@@ -1,3 +1,5 @@
+import Classes.Audio;
+import Classes.Movie;
 import Classes.Picture;
 
 import java.util.Scanner;
@@ -19,6 +21,22 @@ System.out.println("Applicazione avviata.");
 
         fotoPazu.run();
         fotoLili.run();
+
+        fotoLili.increaseBrightness(3);
+        fotoPazu.decreaseBrightness(4);
+
+        fotoPazu.run();
+        fotoLili.run();
+
+        System.out.println("-------------------------------------------------------------------------------------------");
+
+        Movie pazuzuVideo = new Movie("Pazuzu che dorme", 10);
+
+        pazuzuVideo.play();
+
+        Audio rammSong = new Audio("Dicke Titten - Rammstein", 22);
+
+        rammSong.play();
 
     }
 }

@@ -1,11 +1,12 @@
 package Classes;
 
 public class Picture implements VideoContent {
-    String title;
-    int brightNess = 5;
+    private String title;
+    private int brightNess = 5;
 
     public Picture(String name){
         this.title = name;
+        this.brightNess = 5;
     }
 
     @Override

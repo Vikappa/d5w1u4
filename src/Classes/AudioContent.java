@@ -2,8 +2,6 @@ package Classes;
 
 public interface AudioContent extends Media {
 
-    int volume = 5;
-
     void play();
 
     void run();
