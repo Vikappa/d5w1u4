@@ -1,4 +1,11 @@
 package Classes;
 
-public class VideoContent {
+public interface VideoContent extends Media {
+
+    void show();
+
+
+    public void increaseBrightness();
+
+    public void decreaseBrightness();
 }
