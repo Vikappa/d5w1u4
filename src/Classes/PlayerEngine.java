@@ -11,22 +11,24 @@ public class PlayerEngine {
         this.fileStorage = files;
     }
 
-    private void audioFocus(Media target){
+    private void audioFocus(Media target, Scanner lettore){
         Audio focussed = (Audio) target;
         System.out.println("Select an option:");
         System.out.println("1-Play");
         System.out.println("2-Increase Volume");
         System.out.println("3-Decrease Volume:");
+        System.out.println("4-Back to main menu:");
 
     }
-    private void pictureFocus(Media target){
+    private void pictureFocus(Media target, Scanner lettore){
         Picture focussed = (Picture) target;
         System.out.println("Select an option:");
         System.out.println("1-Show");
         System.out.println("2-Increase Brightness");
         System.out.println("3-Decrease Brightness:");
+        System.out.println("4-Back to main menu:");
     }
-    private void movieFocus(Media target){
+    private void movieFocus(Media target, Scanner lettore){
         Movie focussed = (Movie) target;
         System.out.println("Select an option:");
         System.out.println("1-Play");
@@ -34,6 +36,34 @@ public class PlayerEngine {
         System.out.println("3-Decrease Brightness:");
         System.out.println("4-Increase Volume");
         System.out.println("5-Decrease Volume:");
+        System.out.println("6-Back to main menu:");
+
+        int chosenIndex = -1;
+        while (chosenIndex < 0 || chosenIndex > 5){
+            System.out.println("Please chose a file to play or type 0 to exit");
+            if(lettore.hasNextInt()){
+                chosenIndex = lettore.nextInt();
+                lettore.nextLine(); // This consumes the newline character after the number
+                if(chosenIndex < 0 || chosenIndex > 5){
+                    System.out.println("Please select a valid file number between 1 to 5 or type 6 to exit.");
+                } else if (chosenIndex == 0) {
+                    start();
+                    break;
+                } else {
+                    switch (chosenIndex){
+                        case 1:
+                            target.run();
+                            break;
+
+
+
+                    }
+                }
+            }else{
+                System.out.println("Invalid input. Please enter a number.");
+                lettore.next();
+            }
+        }
     }
 
     private void addMediaToStorage(Media target){
@@ -44,18 +74,18 @@ public class PlayerEngine {
         System.out.println("File added to storage");
     }
 
-    private void fileFocus(Media target){
+    private void fileFocus(Media target, Scanner lettore){
         System.out.println();
         System.out.println("File " +target.getTitle()+ " choosen. Please select an action");
         //CONTROLLA SE TARGET IMPLEMENTA L'INTERFACCIA AUDIOCONTENT, VIDEOCONTENT O ENTRAMBI
         if (target instanceof AudioContent && !(target instanceof VideoContent)) {
-            audioFocus(target);
+            audioFocus(target, lettore);
         }
         if (target instanceof VideoContent && !(target instanceof AudioContent)) {
-            pictureFocus(target);
+            pictureFocus(target, lettore);
         }
         if (target instanceof AudioContent && target instanceof VideoContent) {
-            movieFocus(target);
+            movieFocus(target, lettore);
         }
 
     }
@@ -157,7 +187,7 @@ public class PlayerEngine {
                     start();
                     break;
                 } else {
-                    fileFocus(fileStorage[chosenFileIndex-1]);
+                    fileFocus(fileStorage[chosenFileIndex-1], lettore);
                 }
             }else{
                 System.out.println("Invalid input. Please enter a number.");
