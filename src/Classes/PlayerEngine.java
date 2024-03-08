@@ -11,12 +11,53 @@ public class PlayerEngine {
         this.fileStorage = files;
     }
 
+    private void audioFocus(Media target){
+        Audio focussed = (Audio) target;
+        System.out.println("Select an option:");
+        System.out.println("1-Play");
+        System.out.println("2-Increase Volume");
+        System.out.println("3-Decrease Volume:");
+
+    }
+    private void pictureFocus(Media target){
+        Picture focussed = (Picture) target;
+        System.out.println("Select an option:");
+        System.out.println("1-Show");
+        System.out.println("2-Increase Brightness");
+        System.out.println("3-Decrease Brightness:");
+    }
+    private void movieFocus(Media target){
+        Movie focussed = (Movie) target;
+        System.out.println("Select an option:");
+        System.out.println("1-Play");
+        System.out.println("2-Increase Brightness");
+        System.out.println("3-Decrease Brightness:");
+        System.out.println("4-Increase Volume");
+        System.out.println("5-Decrease Volume:");
+    }
+
     private void addMediaToStorage(Media target){
         for (int i = this.fileStorage.length-1; i > 0 ; i--) {
             this.fileStorage[i] = this.fileStorage[i-1];
         }
         fileStorage[0] = target;
         System.out.println("File added to storage");
+    }
+
+    private void fileFocus(Media target){
+        System.out.println();
+        System.out.println("File " +target.getTitle()+ " choosen. Please select an action");
+        //CONTROLLA SE TARGET IMPLEMENTA L'INTERFACCIA AUDIOCONTENT, VIDEOCONTENT O ENTRAMBI
+        if (target instanceof AudioContent && !(target instanceof VideoContent)) {
+            audioFocus(target);
+        }
+        if (target instanceof VideoContent && !(target instanceof AudioContent)) {
+            pictureFocus(target);
+        }
+        if (target instanceof AudioContent && target instanceof VideoContent) {
+            movieFocus(target);
+        }
+
     }
 
     private void createMedia(Scanner scanner) {
@@ -116,7 +157,7 @@ public class PlayerEngine {
                     start();
                     break;
                 } else {
-                    this.fileStorage[chosenFileIndex-1].run();
+                    fileFocus(fileStorage[chosenFileIndex-1]);
                 }
             }else{
                 System.out.println("Invalid input. Please enter a number.");
